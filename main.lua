@@ -7,7 +7,7 @@ local RunService = game:GetService("RunService")
 local Colors = {
 	TabIdle = Color3.fromRGB(25, 25, 25),
 	TabActive = Color3.fromRGB(33, 33, 33),
-	TabIndicator = Color3.fromRGB(56, 102, 255),
+	TabIndicator = Color3.fromRGB(57, 255, 113),
 	Button = Color3.fromRGB(34, 34, 34),
 	ButtonHover = Color3.fromRGB(40,40,40),
 }
@@ -107,6 +107,8 @@ local function BuildBase()
 	Gui.Tabholders.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	Gui.Tabholders.BorderSizePixel = 0
 	Instance.new("UICorner", Gui.Tabholders).CornerRadius = UDim.new(0, 10)
+	
+	Gui.Tabholders.ClipsDescendants = true
 
 	Gui.Tabholders.CanvasSize = UDim2.new(0, 0, 0, 0) 
 	Gui.Tabholders.ScrollBarThickness = 0
@@ -123,6 +125,10 @@ local function BuildBase()
 	Gui.TabIndicator.BorderSizePixel = 0
 	Gui.TabIndicator.Visible = false
 	Gui.TabIndicator.Parent = Gui.Tabholders
+	
+	local IndicatorCorner = Instance.new("UICorner")
+	IndicatorCorner.CornerRadius = UDim.new(1, 0) 
+	IndicatorCorner.Parent = Gui.TabIndicator
 
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Name = "TextLabel"
@@ -341,8 +347,8 @@ function UI:CreateToggle(parent, text, callback)
 
 	local function updateVisual()
 		if state then
-			knobHolder.BackgroundColor3 = Color3.fromRGB(56, 102, 255)
-			stroke.Color = Color3.fromRGB(56, 102, 255) -- active color
+			knobHolder.BackgroundColor3 = Color3.fromRGB(57, 255, 113)
+			stroke.Color = Color3.fromRGB(57, 255, 113) -- active color
 			knob:TweenPosition(UDim2.new(0.6, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
 		else
 			knobHolder.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
